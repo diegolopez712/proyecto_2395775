@@ -1,4 +1,5 @@
 <?php
+//https://github.com/diegolopez712/proyecto_2395775
 require_once('conexion.php');
 class Pedido{
     private $idPedido;
@@ -67,7 +68,7 @@ class Pedido{
         $sql->bindValue('idUsuario', $pedido->getidUsuario());
         try{
             $sql->execute(); //Ejecutar el sql
-            $mensaje = $baseDatos->lastInsertId();
+            $mensaje = $baseDatos->lastInsertId();//Capturar el último id insertado
         }
         catch(Excepcion $e){
             $mensaje = $e->getMessage(); //Obtener el mensaje de error.
