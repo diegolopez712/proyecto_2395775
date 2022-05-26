@@ -1,35 +1,35 @@
 <?php
-require_once('../controlador/controladorCategoria.php');
-$controladorCategoria = new controladorCategoria();
-$listarCategoria = $controladorCategoria->listarCategoria();
-//var_dump($listarCategoria);
+require_once('../controlador/controladorPedido.php');
+$listarPedido = listarPedido();//Llamado a función
 ?>
 <?php
 require_once('layoutSuperior.php')
 ?>
 
     <link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">
-    <a href="../Controlador/controladorCategoria.php?vista=registrarCategoria.php">Registrar</a>
+    <a href="../Controlador/controladorPedido.php?vista=registrarPedido.php">Registrar</a>
     <table  id="example" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                foreach($listarCategoria as $categoria){
+                foreach($listarPedido as $pedido){
                     echo "<tr>";
-                    echo "<td>".$categoria['idCategoria']."</td>";
-                    echo "<td>".$categoria['nombre']."</td>";
+                    echo "<td>".$pedido['idPedido']."</td>";
+                    echo "<td>".$pedido['idCliente']."-".$pedido['nombreCliente']."</td>";
+                    echo "<td>".$pedido['fecha']."</td>";
                     echo "<td>
-                    <form method='POST' action='../Controlador/controladorCategoria.php'>
-                    <input type='hidden' name='idCategoria' value=".$categoria['idCategoria']." />
+                    <form method='POST' action='../Controlador/controladorPedido.php'>
+                    <input type='hidden' name='idPedido' value=".$pedido['idPedido']." />
                     <button type='submit' name='editar'>Editar</button>
                     </form>
-                    <a href='#' onclick='validarEliminacion($categoria[idCategoria])' >Eliminar</a>
+                    <a href='#' onclick='validarEliminacion($pedido[idPedido])' >Eliminar</a>
                     </td>";
                     echo "</tr>";
                 }
@@ -38,16 +38,17 @@ require_once('layoutSuperior.php')
         <tfoot>
             <tr>
                 <th>Id</th>
-                <th>Nombre</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </tfoot>
     </table>
 <script>
-    function validarEliminacion(idCategoria){
+    function validarEliminacion(idPedido){
         let eliminar = "";
-        if(confirm('Está seguro de eliminar la Categoría?')){
-            document.location.href = "../Controlador/controladorCategoria.php?idCategoria="+idCategoria+"&eliminar";
+        if(confirm('Está seguro de eliminar el Pedido?')){
+            document.location.href = "../Controlador/controladorPedido.php?idPedido="+idPedido+"&eliminar";
         }
     }
 

@@ -4,16 +4,11 @@ $controladorCategoria = new controladorCategoria();
 $listarCategoria = $controladorCategoria->listarCategoria();
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Producto</title>
-</head>
-<body>
+<?php 
+require_once('layoutSuperior.php');
+?>
     <h1 align='center'>Registrar Producto</h1>
+    <form method="POST" action="../controlador/controladorProducto.php" >
     <label>Nombre</label>
     <input type="text" name="nombre" id="nombre" />
     <br> 
@@ -38,6 +33,8 @@ $listarCategoria = $controladorCategoria->listarCategoria();
     <input type="radio" name="estado" id="estadoD" />Disponible
     <input type="radio" name="estado" id="estadoND" />No Disponible
     <br> 
-    <button type="submit" name="Registrar" id="Registrar">Registrar</button>
-</body>
-</html>
+    <button type="submit" name="registrar" id="Registrar">Registrar</button>
+    </form>
+<?php
+require_once('layoutInferior.php');
+?>

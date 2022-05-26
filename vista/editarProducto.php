@@ -14,15 +14,9 @@ $producto = $controladorProducto->buscarProducto($idProducto);
 $controladorCategoria = new controladorCategoria();
 $listarCategoria = $controladorCategoria->listarCategoria();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Producto</title>
-</head>
-<body>
+<?php
+require_once('layoutSuperior.php');
+?>
     <h1 align='center'>Editar Producto</h1>
     <label>Id</label>
     <input type="text" name="idProducto" id="idProducto" readonly value="<?php echo $producto->getidProducto(); ?>" />
@@ -53,5 +47,6 @@ $listarCategoria = $controladorCategoria->listarCategoria();
     <input type="radio" name="estado" id="estadoND" <?php  if($producto->getestado() == 0){ ?> checked  <?php } ?> />No Disponible
     <br> 
     <button type="submit" name="Editar" id="Editar">Registrar</button>
-</body>
-</html>
+<?php
+require_once('layoutInferior.php');
+?>

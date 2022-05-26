@@ -21,7 +21,10 @@ class controladorCategoria{
         $Categoria->setidCategoria('');
         $Categoria->setnombre($nombre);
         $mensaje = $crudCategoria->registrarCategoria($Categoria);
-        echo $mensaje;
+        echo "<script>
+        alert('$mensaje');
+        document.location.href='../Vista/listarCategorias.php';
+    </script>";
         
     }
 
@@ -46,7 +49,10 @@ class controladorCategoria{
         $Categoria->setnombre($nombre);
         //var_dump($Categoria);
         $mensaje = $crudCategoria->actualizarCategoria($Categoria);
-        echo $mensaje;
+        echo "<script>
+        alert('$mensaje');
+        document.location.href='../Vista/listarCategorias.php';
+    </script>";
     }
 
     public function eliminarCategoria($idCategoria){

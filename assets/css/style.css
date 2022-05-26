@@ -1,0 +1,30 @@
+#contenedor{
+    width:100%;
+    height: 700px;
+}
+
+#superior{
+    width:100%;
+    height:80px;
+    background-color: brown;
+}
+
+#medio{
+    width:100%;
+    height:500px;
+    background-color: blue;
+}
+
+#izquierdo{
+    width:7%;
+    height:500px;
+    background-color: rgb(43, 174, 11);  
+    float:left;
+}
+
+#derecho{
+    width:92%;
+    height:500px;
+    background-color: rgb(255, 77, 0);
+    float:left;
+}

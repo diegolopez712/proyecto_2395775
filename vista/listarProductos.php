@@ -1,35 +1,36 @@
 <?php
-require_once('../controlador/controladorCategoria.php');
-$controladorCategoria = new controladorCategoria();
-$listarCategoria = $controladorCategoria->listarCategoria();
+require_once('../controlador/controladorProducto.php');
+$controladorProducto = new controladorProducto();
+$listarProducto = $controladorProducto->listarProducto();
 //var_dump($listarCategoria);
 ?>
 <?php
-require_once('layoutSuperior.php')
+require_once('layoutSuperior.php');
 ?>
-
-    <link rel="stylesheet" href="../assets/css/jquery.dataTables.min.css">
-    <a href="../Controlador/controladorCategoria.php?vista=registrarCategoria.php">Registrar</a>
+    <a href="../Controlador/controladorProducto.php?vista=registrarProducto.php">Registrar</a>
     <table  id="example" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                foreach($listarCategoria as $categoria){
+                foreach($listarProducto as $producto){
                     echo "<tr>";
-                    echo "<td>".$categoria['idCategoria']."</td>";
-                    echo "<td>".$categoria['nombre']."</td>";
+                    echo "<td>".$producto['idProducto']."</td>";
+                    echo "<td>".$producto['nombre']."</td>";
                     echo "<td>
-                    <form method='POST' action='../Controlador/controladorCategoria.php'>
-                    <input type='hidden' name='idCategoria' value=".$categoria['idCategoria']." />
+                    <form method='POST' action='../Controlador/controladorProducto.php'>
+                    <input type='hidden' name='idProducto' value=".$producto['idProducto']." />
                     <button type='submit' name='editar'>Editar</button>
                     </form>
-                    <a href='#' onclick='validarEliminacion($categoria[idCategoria])' >Eliminar</a>
+                    <a href='#' onclick='validarEliminacion($producto[idProducto])' >Eliminar</a>
                     </td>";
                     echo "</tr>";
                 }
@@ -44,10 +45,10 @@ require_once('layoutSuperior.php')
         </tfoot>
     </table>
 <script>
-    function validarEliminacion(idCategoria){
+    function validarEliminacion(idProducto){
         let eliminar = "";
-        if(confirm('Está seguro de eliminar la Categoría?')){
-            document.location.href = "../Controlador/controladorCategoria.php?idCategoria="+idCategoria+"&eliminar";
+        if(confirm('Está seguro de eliminar el producto?')){
+            document.location.href = "../Controlador/controladorProducto.php?idProducto="+idProducto+"&eliminar";
         }
     }
 
@@ -65,7 +66,6 @@ require_once('layoutSuperior.php')
         });
     } );
 </script>
-
 <?php
 require_once('layoutInferior.php');
 ?>

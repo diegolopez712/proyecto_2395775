@@ -1,2 +1,14 @@
 
 git clone https://github.com/diegolopez712/proyecto_2395775.git
+
+//Agregar al repositorio los archivos o directorios trabajados
+git add .
+
+//Verificar estado de archivos o directorios
+git status
+
+//Realizar el commit 
+git commit -m "Primer commit"
+
+//Realizar el push: Es el envío al repositorio remoto de las modificaciones
+git push
