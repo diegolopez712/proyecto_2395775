@@ -1,0 +1,6 @@
+<br /><b>Notice</b>:  
+Undefined variable: 
+_SESSION in <b>C:\xampp72\htdocs\crud_2395775\controlador\controladorPedido.php</b> 
+on line <b>22</b><br /><br /><b>Notice</b>:  
+Trying to access array offset on value of type 
+null in <b>C:\xampp72\htdocs\crud_2395775\controlador\controladorPedido.php</b> on line <b>22</b><br /><br /><b>Fatal error</b>:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'idUsuario' cannot be null in C:\xampp72\htdocs\crud_2395775\modelo\pedido.php:83Stack trace:#0 C:\xampp72\htdocs\crud_2395775\modelo\pedido.php(83): PDOStatement-&gt;execute()#1 C:\xampp72\htdocs\crud_2395775\controlador\controladorPedido.php(30): Pedido::registrarPedido(Object(Pedido))#2 {main}  thrown in <b>C:\xampp72\htdocs\crud_2395775\modelo\pedido.php</b> on line <b>83</b><br />

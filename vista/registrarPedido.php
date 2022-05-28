@@ -13,7 +13,7 @@ require_once('layoutSuperior.php');
         <input readonly type="text" id="idPedido" name="idPedido" />
         <br>
         <label>Cliente</label>
-        <select name="idCliente" id="idCliente" > 
+        <select name="idCliente" id="idCliente"> 
         <option value="">Seleccione</option>
         <?php
             foreach($listarCliente as $cliente){
@@ -49,6 +49,10 @@ require_once('layoutSuperior.php');
         <input type="hidden" name="accion" value="Registrar" />
         <button type="button" onclick="registrar()">Agregar</button>
     </form>
+    <br>
+    <div id="mensajeDetalle">
+
+    </div>
 
     <script>
         function calcularSubtotal(){
@@ -58,6 +62,7 @@ require_once('layoutSuperior.php');
         }
 
          async function registrar() {
+
 
             let formData = new FormData();
             formData.append("idPedido", document.getElementById('idPedido').value);
@@ -74,20 +79,41 @@ require_once('layoutSuperior.php');
             });
             let result = await response.text();
             document.getElementById('idPedido').value = result;
-            //alert(result);
+            listarDetallePedido();//LLamar a listarDetallePedido
         }
 
         async function buscarPrecio(idProducto) {
+            //FormaData: Es una clase de Javascript
+            //FormData permite definir parámetros para
+            //enviarlos a través de flex.
             let formData = new FormData();
             formData.append("idProducto", idProducto);
             formData.append("buscarPrecio", 'buscarPrecio');
+            //fetch: Tecnología para peticiones asíncronas
             let response = await fetch('../controlador/controladorProducto.php', {
                 method: 'POST',
                 body: formData
             });
-            let result = await response.text();
-
+            //result almacena la respuesta del servidor
+            let result = await response.text(); 
+            
+            //Asignar a la caja de texto el resultado
             document.getElementById('precio').value = result;
+        }
+
+        async function listarDetallePedido() {
+            let formData = new FormData();
+            formData.append("idPedido", document.getElementById('idPedido').value);    
+            formData.append("accion", 'ListarDetalle');
+
+            let response = await fetch('../controlador/controladorPedido.php', {
+                method: 'POST',
+                body: formData
+            });
+            let result = await response.text();
+            //innerHTML agregar HTML
+            document.getElementById('mensajeDetalle').innerHTML = result;
+
         }
     </script>
 <?php 

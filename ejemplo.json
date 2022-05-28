@@ -1,0 +1,7 @@
+{
+"estudiantes":[
+    {"documento":"1020", "nombres":"Yesenia", "apellidos":"Villamizar"},
+    {"documento":"1111", "nombres":"Maria", "apellidos":"Santana"},
+    {"documento":"1212", "nombres":"Juanita", "apellidos":"Candela"}
+]
+}

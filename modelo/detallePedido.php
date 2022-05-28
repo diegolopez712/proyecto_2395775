@@ -52,6 +52,17 @@ class DetallePedido{
         return $this->precio;
     }
 
+    public function listarDetallePedido($detallePedido){
+        $baseDatos = Conexion::conectar();
+        $sql = $baseDatos->query("SELECT detalle_pedido.*
+            FROM 
+        detalle_pedido 
+        WHERE idPedido = ".$detallePedido->getIdPedido());
+        $sql->execute();
+        Conexion::desconectar($baseDatos);
+        return($sql->fetchAll()); //retornar todos los registros de la consulta.
+    }
+
     public function registrarDetallePedido($detallePedido){
         $mensaje = "";
         //Establecer la conexión a la base datos
