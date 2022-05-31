@@ -115,6 +115,22 @@ require_once('layoutSuperior.php');
             document.getElementById('mensajeDetalle').innerHTML = result;
 
         }
+
+        async function eliminarDetallePedido(idDetallePedido) {
+            if(confirm('Está seguro de eliminar el detalle del producto'+idDetallePedido)){
+                let formData = new FormData();
+                formData.append("idDetallePedido", idDetallePedido);    
+                formData.append("accion", 'EliminarDetalle');
+
+                let response = await fetch('../controlador/controladorPedido.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.text();
+                alert(result);
+                listarDetallePedido();
+            }
+        }
     </script>
 <?php 
 require_once('layoutInferior.php');

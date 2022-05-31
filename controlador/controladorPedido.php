@@ -56,19 +56,47 @@ if(isset($_POST['accion'])){
             $listaDetalle = $detallePedido::listarDetallePedido($detallePedido); 
             $header = "<table border='1' align='center'>
             <thead>
-            <tr><th>Id</th>  
+            <tr><th>Id Prod.</th>  
+            <th>Nombre Prod.</th>  
             <th>Cantidad</th> 
+            <th>Vr. Unitario COP</th> 
+            <th>Subtotal COP</th> 
+            <th>Acción</th>
             </tr></thead>";
             $content = "";
+            $total = 0;
             foreach($listaDetalle as $detalle){
+              
+              $subTotal = 0;
+              $precio = 0;
+              $subTotal =$detalle['cantidad']*$detalle['precio'];
+              $total = $total + $subTotal;
+              $precio = $detalle['precio'];
+              $precio = number_format($precio,2,",",".");
+              $subTotal = number_format($subTotal,2,",",".");
               $content = $content."<tr>
               <td>$detalle[idProducto]</td>
+              <td>$detalle[nombreProducto]</td>
               <td>$detalle[cantidad]</td>
+              <td align='right'>$precio</td>
+              <td align='right'>$subTotal</td>
+              <td align='center'><button type='button' onclick='eliminarDetallePedido($detalle[idDetallePedido])'>X</button></td>
               </tr>";
             }
+            $total = number_format($total,2,",",".");
+            $content = $content."<tr><td colspan='4' align='right'>Total</td>
+            <td align='right'>$total</td> 
+            </tr>";
             $footer = "</table>";
             echo $header.$content.$footer;
         break;
+
+        case 'EliminarDetalle':
+            $idDetallePedido = $_POST['idDetallePedido'];
+            $detallePedido = new DetallePedido();
+            $detallePedido->setidDetallePedido($idDetallePedido);
+            echo $detallePedido::eliminarDetallePedido($detallePedido);
+            break;
     }   
 }
 else if(isset($_REQUEST['vista'])){

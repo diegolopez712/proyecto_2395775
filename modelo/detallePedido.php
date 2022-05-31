@@ -54,9 +54,12 @@ class DetallePedido{
 
     public function listarDetallePedido($detallePedido){
         $baseDatos = Conexion::conectar();
-        $sql = $baseDatos->query("SELECT detalle_pedido.*
+        $sql = $baseDatos->query("SELECT detalle_pedido.*,
+        producto.nombre AS nombreProducto
             FROM 
         detalle_pedido 
+        INNER JOIN producto
+        ON detalle_pedido.idProducto = producto.idProducto
         WHERE idPedido = ".$detallePedido->getIdPedido());
         $sql->execute();
         Conexion::desconectar($baseDatos);
@@ -84,6 +87,21 @@ class DetallePedido{
             $mensaje = $e->getMessage(); //Obtener el mensaje de error.
         }
         Conexion::desconectar($baseDatos); //Cierra la conexión.
+        return $mensaje;
+    }
+
+    public function eliminarDetallePedido($detallePedido){
+        $mensaje = "Eliminación exitosa";
+        $baseDatos = Conexion::conectar();
+        $sql = $baseDatos->query("DELETE FROM detalle_pedido
+        WHERE idDetallePedido = ".$detallePedido->getidDetallePedido());
+        try{
+            $sql->execute();
+        }
+        catch(Exception $e){
+            $mensaje = $e->getMessage(); //Obtener el mensaje de error.
+        }
+        Conexion::desconectar($baseDatos);
         return $mensaje;
     }
 }
